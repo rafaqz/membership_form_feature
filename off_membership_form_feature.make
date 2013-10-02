@@ -15,5 +15,8 @@ projects[payment_paypal][version] = "1.0"
 projects[currency][subdir] = "contrib"
 projects[currency][version] = "2.1"
 
+projects[rules][subdir] = "contrib"
+projects[rules][version] = "2.5"
+
 projects[email][subdir] = "contrib"
 
