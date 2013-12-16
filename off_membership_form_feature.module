@@ -21,7 +21,7 @@ function off_membership_form_feature_menu() {
 }
 
 function off_membership_form_feature_entity_insert($entity, $type) {
-  // Copy entityform id to session to be used in subsequent payment.
+  // Copy the entityform id to the session variable to be used in the subsequent payment.
   if ($type === 'entityform') {
     $info = entity_get_info($type);
     list($id) = entity_extract_ids($type, $entity);
@@ -32,9 +32,7 @@ function off_membership_form_feature_entity_insert($entity, $type) {
 }
 
 /**
- * Return a payment page for a field instance.
- *
- * @param array $instance
+ * Create payment and line item objects and return a payment form.
  *
  * @return array
  *   A Drupal build array.
@@ -43,18 +41,22 @@ function off_membership_form_feature_entity_insert($entity, $type) {
 function off_membership_form_feature_payment_page() {
   $entityform_id = $_SESSION['off_membership_form_feature']['entityform_id'];
   $entityform = entityform_load($entityform_id);
-  //dpm($entityform);
+  // Load the user selected subscription type taxonomy term.
   $term = taxonomy_term_load($entityform->field_mf_subscription_type['und'][0]['tid']);
-  //dpm($term);
+  // Create the payment object.
   $payment = new Payment(array(
+    // The id of the entityform is attached here for entity referencing later.
     'context_data' => array(
       'entityform_id' => $entityform_id,
     ),
+    // Use the currency from the user selected subscription type.
     'currency_code' => $term->field_mf_amount['und'][0]['currency'],
     'description' => t('Pay for your membership subscription'),
     'finish_callback' => 'off_membership_form_feature_process_payment',
   ));
+  // Create a payment line item object.
   $payment->setLineItem(new PaymentLineItem(array(
+    // Use the amount and description from the user selected subscription type.
     'amount' => $term->field_mf_amount['und'][0]['amount'],
     'description' => $term->description,
     'name' => strtolower("off_membership_form_feature_{$term->name}_payment"),
@@ -63,8 +65,14 @@ function off_membership_form_feature_payment_page() {
   return drupal_get_form('payment_form_standalone', $payment);
 }
 
+/**
+ * Add the id of the payment to the original entityform in an
+ * entityreference field, linking form and payment.
+ * 
+ * @param object $element
+ */
+
 function off_membership_form_feature_process_payment($element) {
-  dpm($element);
   $entityform_id = $element->context_data['entityform_id'];
   $entityform = entityform_load($entityform_id);
   $entityform->field_mf_payment_ref['und'][0]['target_id'] = $element->pid;
