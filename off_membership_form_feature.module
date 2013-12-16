@@ -5,3 +5,69 @@
  */
 
 include_once 'off_membership_form_feature.features.inc';
+
+
+/**
+ * Implements hook_menu().
+ */
+
+function off_membership_form_feature_menu() {
+  $items['membership-form/pay'] = array(
+    'page callback' => 'off_membership_form_feature_payment_page',
+    'access callback' => TRUE,
+    //'page arguments' => array(1, 'foo'),
+  );
+  return $items;
+}
+
+function off_membership_form_feature_entity_insert($entity, $type) {
+  // Copy entityform id to session to be used in subsequent payment.
+  if ($type === 'entityform') {
+    $info = entity_get_info($type);
+    list($id) = entity_extract_ids($type, $entity);
+    $entityform_wrapper = entity_metadata_wrapper('entityform', $entity);
+    drupal_session_start();
+    $_SESSION['off_membership_form_feature']['entityform_id'] = $entityform_wrapper->getIdentifier();
+  }
+}
+
+/**
+ * Return a payment page for a field instance.
+ *
+ * @param array $instance
+ *
+ * @return array
+ *   A Drupal build array.
+ */
+
+function off_membership_form_feature_payment_page() {
+  $entityform_id = $_SESSION['off_membership_form_feature']['entityform_id'];
+  $entityform = entityform_load($entityform_id);
+  //dpm($entityform);
+  $term = taxonomy_term_load($entityform->field_mf_subscription_type['und'][0]['tid']);
+  //dpm($term);
+  $payment = new Payment(array(
+    'context_data' => array(
+      'entityform_id' => $entityform_id,
+    ),
+    'currency_code' => $term->field_mf_amount['und'][0]['currency'],
+    'description' => t('Pay for your membership subscription'),
+    'finish_callback' => 'off_membership_form_feature_process_payment',
+  ));
+  $payment->setLineItem(new PaymentLineItem(array(
+    'amount' => $term->field_mf_amount['und'][0]['amount'],
+    'description' => $term->description,
+    'name' => strtolower("off_membership_form_feature_{$term->name}_payment"),
+  )));
+
+  return drupal_get_form('payment_form_standalone', $payment);
+}
+
+function off_membership_form_feature_process_payment($element) {
+  dpm($element);
+  $entityform_id = $element->context_data['entityform_id'];
+  $entityform = entityform_load($entityform_id);
+  $entityform->field_mf_payment_ref['und'][0]['target_id'] = $element->pid;
+  entityform_save($entityform);
+}
+

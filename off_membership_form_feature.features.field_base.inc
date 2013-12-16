@@ -28,6 +28,28 @@ function off_membership_form_feature_field_default_field_bases() {
     'type' => 'addressfield',
   );
 
+  // Exported field_base: 'field_mf_amount'
+  $field_bases['field_mf_amount'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_mf_amount',
+    'foreign keys' => array(),
+    'indexes' => array(),
+    'locked' => 0,
+    'module' => 'money',
+    'settings' => array(
+      'max' => 99999999.99,
+      'min' => -99999999.99,
+      'precision' => 10,
+      'profile2_private' => FALSE,
+      'scale' => 2,
+    ),
+    'translatable' => 0,
+    'type' => 'money',
+  );
+
   // Exported field_base: 'field_mf_email'
   $field_bases['field_mf_email'] = array(
     'active' => 1,
@@ -44,28 +66,6 @@ function off_membership_form_feature_field_default_field_bases() {
     ),
     'translatable' => 0,
     'type' => 'email',
-  );
-
-  // Exported field_base: 'field_mf_payment'
-  $field_bases['field_mf_payment'] = array(
-    'active' => 1,
-    'cardinality' => 1,
-    'deleted' => 0,
-    'entity_types' => array(),
-    'field_name' => 'field_mf_payment',
-    'foreign keys' => array(),
-    'indexes' => array(
-      'pid' => array(
-        0 => 'pid',
-      ),
-    ),
-    'locked' => 0,
-    'module' => 'paymentreference',
-    'settings' => array(
-      'profile2_private' => FALSE,
-    ),
-    'translatable' => 0,
-    'type' => 'paymentreference',
   );
 
   // Exported field_base: 'field_mf_subscription_type'
