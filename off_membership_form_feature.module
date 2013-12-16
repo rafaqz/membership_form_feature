@@ -79,3 +79,16 @@ function off_membership_form_feature_process_payment($element) {
   entityform_save($entityform);
 }
 
+/**
+ * Implements hook_form_alter().
+ */
+
+function off_membership_form_feature_form_alter(&$form, &$form_state, $form_id) {
+  // Cleanup form.
+  if ($form_id === 'membership_form_entityform_edit_form') {
+    // Remove payment ref. This is populated automatically.
+    unset($form['field_mf_payment_ref']);
+    // Remove address title, its confusing in this context.
+    unset($form['field_mf_address']['und'][0]['#title']);
+  }
+}
