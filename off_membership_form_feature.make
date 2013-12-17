@@ -19,4 +19,9 @@ projects[rules][subdir] = "contrib"
 projects[rules][version] = "2.5"
 
 projects[email][subdir] = "contrib"
+;projects[email][version] = "1.x-dev"
+; Leave empty to just get the latest version, as dev is that anyway.
+
+projects[money][subdir] = "contrib"
+;projects[money][version] = "1.x-dev"
 
