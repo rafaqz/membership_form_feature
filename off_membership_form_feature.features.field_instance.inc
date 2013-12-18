@@ -26,7 +26,7 @@ function off_membership_form_feature_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
+        'label' => 'hidden',
         'module' => 'addressfield',
         'settings' => array(
           'format_handlers' => array(
@@ -93,6 +93,47 @@ function off_membership_form_feature_field_default_field_instances() {
       ),
       'type' => 'email_textfield',
       'weight' => 1,
+    ),
+  );
+
+  // Exported field_instance: 'entityform-membership_form-field_mf_payment_ref'
+  $field_instances['entityform-membership_form-field_mf_payment_ref'] = array(
+    'bundle' => 'membership_form',
+    'default_value' => NULL,
+    'default_value_function' => '',
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'entityreference',
+        'settings' => array(
+          'link' => FALSE,
+        ),
+        'type' => 'entityreference_label',
+        'weight' => 5,
+      ),
+    ),
+    'entity_type' => 'entityform',
+    'entityconnect_unload_add' => 1,
+    'entityconnect_unload_edit' => 1,
+    'field_name' => 'field_mf_payment_ref',
+    'label' => 'Payment Ref',
+    'required' => 0,
+    'settings' => array(
+      'behaviors' => array(
+        'prepopulate' => array(
+          'status' => 0,
+        ),
+      ),
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(),
+      'type' => 'options_select',
+      'weight' => 3,
     ),
   );
 
@@ -465,6 +506,7 @@ function off_membership_form_feature_field_default_field_instances() {
   t('Address');
   t('Amount');
   t('Email');
+  t('Payment Ref');
   t('Subscription Type');
 
   return $field_instances;
