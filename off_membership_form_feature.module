@@ -12,7 +12,7 @@ include_once 'off_membership_form_feature.features.inc';
  */
 
 function off_membership_form_feature_menu() {
-  $items['membership-form/pay'] = array(
+  $items['membershipm/pay'] = array(
     'page callback' => 'off_membership_form_feature_payment_page',
     'access callback' => TRUE,
     //'page arguments' => array(1, 'foo'),
