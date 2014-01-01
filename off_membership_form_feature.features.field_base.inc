@@ -135,7 +135,7 @@ function off_membership_form_feature_field_default_field_bases() {
     'settings' => array(
       'allowed_values' => array(
         0 => array(
-          'vocabulary' => 'subscription_types',
+          'vocabulary' => 'membership_type',
           'parent' => 0,
         ),
       ),

@@ -9,9 +9,9 @@
  */
 function off_membership_form_feature_taxonomy_default_vocabularies() {
   return array(
-    'subscription_types' => array(
-      'name' => 'Subscription Types',
-      'machine_name' => 'subscription_types',
+    'membership_type' => array(
+      'name' => 'Membership Type',
+      'machine_name' => 'membership_type',
       'description' => '',
       'hierarchy' => 0,
       'module' => 'taxonomy',

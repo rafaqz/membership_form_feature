@@ -172,9 +172,9 @@ function off_membership_form_feature_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'taxonomy_term-subscription_types-field_mf_amount'
-  $field_instances['taxonomy_term-subscription_types-field_mf_amount'] = array(
-    'bundle' => 'subscription_types',
+  // Exported field_instance: 'taxonomy_term-membership_type-field_mf_amount'
+  $field_instances['taxonomy_term-membership_type-field_mf_amount'] = array(
+    'bundle' => 'membership_type',
     'default_value' => NULL,
     'deleted' => 0,
     'description' => '',

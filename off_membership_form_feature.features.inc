@@ -7,7 +7,7 @@
 /**
  * Implements hook_views_api().
  */
-function off_membership_form_feature_views_api() {
+function off_membership_form_feature_views_api($module = NULL, $api = NULL) {
   return array("api" => "3.0");
 }
 
@@ -35,7 +35,7 @@ function off_membership_form_feature_default_entityform_type() {
       "roles" : { "1" : "1", "2" : "2", "3" : "3", "5" : "5", "4" : "4" },
       "resubmit_action" : "new",
       "access_rules" : [],
-      "redirect_path" : "membership-form\\/pay",
+      "redirect_path" : "membership\\/pay",
       "instruction_pre" : {
         "value" : "\\u003Cp\\u003EMembership Application \\u2013 Open Food Foundation\\u003C\\/p\\u003E\\r\\n",
         "format" : "full_html"
