@@ -12,8 +12,8 @@ function off_membership_form_feature_views_default_views() {
 
   $view = new view();
   $view->name = 'membership_entityforms';
-  $view->description = 'A list of all entityforms submissions';
-  $view->tag = 'entityforms';
+  $view->description = 'A list of all membership entityforms submissions';
+  $view->tag = 'Membership Form Feature';
   $view->base_table = 'entityform';
   $view->human_name = 'Membership Entityforms';
   $view->core = 7;
@@ -301,22 +301,6 @@ function off_membership_form_feature_views_default_views() {
       'address' => 'address',
     ),
   );
-  /* Field: Entityform Type: Label */
-  $handler->display->display_options['fields']['label_1']['id'] = 'label_1';
-  $handler->display->display_options['fields']['label_1']['table'] = 'entityform_type';
-  $handler->display->display_options['fields']['label_1']['field'] = 'label';
-  $handler->display->display_options['fields']['label_1']['label'] = 'Form Type';
-  /* Field: Entityform: Date submitted */
-  $handler->display->display_options['fields']['created']['id'] = 'created';
-  $handler->display->display_options['fields']['created']['table'] = 'entityform';
-  $handler->display->display_options['fields']['created']['field'] = 'created';
-  $handler->display->display_options['fields']['created']['date_format'] = 'short';
-  /* Field: Entityform: Date changed */
-  $handler->display->display_options['fields']['changed']['id'] = 'changed';
-  $handler->display->display_options['fields']['changed']['table'] = 'entityform';
-  $handler->display->display_options['fields']['changed']['field'] = 'changed';
-  $handler->display->display_options['fields']['changed']['hide_alter_empty'] = FALSE;
-  $handler->display->display_options['fields']['changed']['date_format'] = 'short';
   /* Field: Entityform: Subscription Type */
   $handler->display->display_options['fields']['field_mf_subscription_type']['id'] = 'field_mf_subscription_type';
   $handler->display->display_options['fields']['field_mf_subscription_type']['table'] = 'field_data_field_mf_subscription_type';
@@ -332,6 +316,12 @@ function off_membership_form_feature_views_default_views() {
   $handler->display->display_options['fields']['status']['table'] = 'payment_status_item';
   $handler->display->display_options['fields']['status']['field'] = 'status';
   $handler->display->display_options['fields']['status']['relationship'] = 'psiid_last';
+  /* Field: Payment status item: Creation date and time */
+  $handler->display->display_options['fields']['created']['id'] = 'created';
+  $handler->display->display_options['fields']['created']['table'] = 'payment_status_item';
+  $handler->display->display_options['fields']['created']['field'] = 'created';
+  $handler->display->display_options['fields']['created']['relationship'] = 'psiid_last';
+  $handler->display->display_options['fields']['created']['date_format'] = 'long';
   /* Sort criterion: Entityform: Date submitted */
   $handler->display->display_options['sorts']['created']['id'] = 'created';
   $handler->display->display_options['sorts']['created']['table'] = 'entityform';
