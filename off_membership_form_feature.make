@@ -4,19 +4,16 @@ core = 7.x
 api = 2
 
 projects[entityform][subdir] = "contrib"
-projects[entityform][version] = "1.1"
+projects[entityform][version] = "1.4"
 
 projects[payment][subdir] = "contrib"
-projects[payment][version] = "1.8"
+projects[payment][version] = "1.9"
 
 projects[payment_paypal][subdir] = "contrib"
 projects[payment_paypal][version] = "1.0"
 
 projects[currency][subdir] = "contrib"
-projects[currency][version] = "2.1"
-
-projects[rules][subdir] = "contrib"
-projects[rules][version] = "2.5"
+projects[currency][version] = "2.2"
 
 projects[email][subdir] = "contrib"
 ;projects[email][version] = "1.x-dev"
