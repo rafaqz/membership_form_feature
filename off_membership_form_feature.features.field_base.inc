@@ -76,11 +76,11 @@ function off_membership_form_feature_field_default_field_bases() {
     'entity_types' => array(),
     'field_name' => 'field_mf_payment_ref',
     'foreign keys' => array(
-      'node' => array(
+      'payment' => array(
         'columns' => array(
-          'target_id' => 'nid',
+          'target_id' => 'pid',
         ),
-        'table' => 'node',
+        'table' => 'payment',
       ),
     ),
     'indexes' => array(
