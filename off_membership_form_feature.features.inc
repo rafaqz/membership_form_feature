@@ -45,7 +45,7 @@ function off_membership_form_feature_default_entityform_type() {
     "rdf_mapping" : [],
     "paths" : { "submit" : {
         "source" : "eform\\/submit\\/membership-form",
-        "alias" : "membership-form",
+        "alias" : "membership",
         "language" : "und"
       }
     }
