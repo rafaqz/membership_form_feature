@@ -180,7 +180,7 @@ function off_membership_form_feature_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
+        'label' => 'inline',
         'module' => 'money',
         'settings' => array(),
         'type' => 'money_default',
@@ -492,7 +492,7 @@ function off_membership_form_feature_field_default_field_instances() {
             'ZWR' => 0,
           ),
         ),
-        'currency_display_mode' => 'as',
+        'currency_display_mode' => 's|a|+|c',
         'currency_select_mode' => 'name',
         'decimals_display_mode' => 'field',
       ),
