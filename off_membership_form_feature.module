@@ -79,6 +79,24 @@ function off_membership_form_feature_process_payment($element) {
   entityform_save($entityform);
 }
 
+
+/**
+ * Implements hook_field_widget_properties_ENTITY_TYPE_alter().
+ */
+function off_membership_form_feature_field_widget_form_alter(&$element, &$form_state, $context) {
+  if (($context['field']['field_name'] == 'field_mf_subscription_type') && 
+    ($form_state['build_info']['form_id'] === 'membership_form_entityform_edit_form')) {
+    dpm($element);
+    dpm($context);
+    dpm($form_state);
+    foreach($element['#options'] as $tid => $label) {
+      $term = taxonomy_term_load($tid);
+      $term_array = taxonomy_term_view_multiple(array($tid => $term), 'teaser');
+      $element['#options'][$tid] = drupal_render($term_array);
+    }
+  }
+}
+
 /**
  * Implements hook_form_alter().
  */
