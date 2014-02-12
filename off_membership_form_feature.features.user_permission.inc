@@ -10,6 +10,13 @@
 function off_membership_form_feature_user_default_permissions() {
   $permissions = array();
 
+  // Exported permission: 'add terms in membership_type'.
+  $permissions['add terms in membership_type'] = array(
+    'name' => 'add terms in membership_type',
+    'roles' => array(),
+    'module' => 'taxonomy_access_fix',
+  );
+
   // Exported permission: 'administer entityform types'.
   $permissions['administer entityform types'] = array(
     'name' => 'administer entityform types',
@@ -17,6 +24,15 @@ function off_membership_form_feature_user_default_permissions() {
       'Admin' => 'Admin',
     ),
     'module' => 'entityform',
+  );
+
+  // Exported permission: 'administer payment paypal'.
+  $permissions['administer payment paypal'] = array(
+    'name' => 'administer payment paypal',
+    'roles' => array(
+      'Admin' => 'Admin',
+    ),
+    'module' => 'payment_paypal',
   );
 
   // Exported permission: 'currency.currency.administer'.
@@ -64,6 +80,13 @@ function off_membership_form_feature_user_default_permissions() {
     'module' => 'entityform',
   );
 
+  // Exported permission: 'delete terms in membership_type'.
+  $permissions['delete terms in membership_type'] = array(
+    'name' => 'delete terms in membership_type',
+    'roles' => array(),
+    'module' => 'taxonomy',
+  );
+
   // Exported permission: 'edit any entityform'.
   $permissions['edit any entityform'] = array(
     'name' => 'edit any entityform',
@@ -81,6 +104,13 @@ function off_membership_form_feature_user_default_permissions() {
       'authenticated user' => 'authenticated user',
     ),
     'module' => 'entityform',
+  );
+
+  // Exported permission: 'edit terms in membership_type'.
+  $permissions['edit terms in membership_type'] = array(
+    'name' => 'edit terms in membership_type',
+    'roles' => array(),
+    'module' => 'taxonomy',
   );
 
   // Exported permission: 'payment.global.administer'.
@@ -152,6 +182,22 @@ function off_membership_form_feature_user_default_permissions() {
     'roles' => array(
       'Admin' => 'Admin',
     ),
+    'module' => 'payment',
+  );
+
+  // Exported permission: 'payment.payment_method.create.PaymentMethodBasicController'.
+  $permissions['payment.payment_method.create.PaymentMethodBasicController'] = array(
+    'name' => 'payment.payment_method.create.PaymentMethodBasicController',
+    'roles' => array(
+      'Admin' => 'Admin',
+    ),
+    'module' => 'payment',
+  );
+
+  // Exported permission: 'payment.payment_method.create.PaymentPaypalExpressCheckoutMethodController'.
+  $permissions['payment.payment_method.create.PaymentPaypalExpressCheckoutMethodController'] = array(
+    'name' => 'payment.payment_method.create.PaymentPaypalExpressCheckoutMethodController',
+    'roles' => array(),
     'module' => 'payment',
   );
 
