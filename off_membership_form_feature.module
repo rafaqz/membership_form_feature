@@ -58,11 +58,17 @@ function off_membership_form_feature_payment_page() {
   $payment->setLineItem(new PaymentLineItem(array(
     // Use the amount and description from the user selected subscription type.
     'amount' => $term->field_mf_amount['und'][0]['amount'],
-    'description' => $term->description,
+    'description' => "Open Food Foundation Membership - $term->name",
     'name' => strtolower("off_membership_form_feature_{$term->name}_payment"),
   )));
 
-  return drupal_get_form('payment_form_standalone', $payment);
+  $entityform_view = entityform_page_view($entityform, $view_mode = 'confirmation');
+  //$entityform_view
+  $content = array(
+    'entityform_view' => $entityform_view,
+    'payment_form' => drupal_get_form('payment_form_standalone', $payment),
+  );
+  return $content;
 }
 
 /**
@@ -104,6 +110,28 @@ function off_membership_form_feature_form_alter(&$form, &$form_state, $form_id) 
     // Remove payment ref. This is populated automatically.
     unset($form['field_mf_payment_ref']);
     // Remove address title, its confusing in this context.
-    unset($form['field_mf_address']['und'][0]['#title']);
+    //unset($form['field_mf_address']['und'][0]['#title']);
   }
 }
+
+/**
+ * Defines line item types.
+ *
+ * @see Payment::getLineItems()
+ *
+ * @return array
+ *   An array with PaymentLineItemInfo objects.
+ */
+function off_membership_form_feature_payment_line_item_info() {
+  $vocabulary = taxonomy_vocabulary_machine_name_load('membership_types');
+  $terms = entity_load('taxonomy_term', FALSE, array('vid' => $vocabulary->vid));
+  $info = array();
+  foreach($terms as $term) {
+    $info[] = new PaymentLineItemInfo(array(
+      'name' => strtolower("off_membership_form_feature_{$term->name}_payment"),
+      'title' => "Open Food Foundation Membership - $term->name",
+    ));
+  }
+  return $info;
+}
+
