@@ -20,13 +20,27 @@ function off_membership_form_feature_field_default_field_instances() {
         'premise' => '',
         'locality' => '',
         'country' => 'AF',
+        'organisation_name' => '',
+        'name_line' => '',
       ),
     ),
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'confirmation' => array(
+        'label' => 'above',
+        'module' => 'addressfield',
+        'settings' => array(
+          'format_handlers' => array(
+            'address' => 'address',
+          ),
+          'use_widget_handlers' => 1,
+        ),
+        'type' => 'addressfield_default',
+        'weight' => 0,
+      ),
       'default' => array(
-        'label' => 'hidden',
+        'label' => 'above',
         'module' => 'addressfield',
         'settings' => array(
           'format_handlers' => array(
@@ -40,7 +54,7 @@ function off_membership_form_feature_field_default_field_instances() {
     ),
     'entity_type' => 'entityform',
     'field_name' => 'field_mf_address',
-    'label' => 'Address',
+    'label' => 'Name and Address',
     'required' => 0,
     'settings' => array(
       'user_register_form' => FALSE,
@@ -70,6 +84,13 @@ function off_membership_form_feature_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'confirmation' => array(
+        'label' => 'above',
+        'module' => 'email',
+        'settings' => array(),
+        'type' => 'email_default',
+        'weight' => 1,
+      ),
       'default' => array(
         'label' => 'above',
         'module' => 'email',
@@ -104,6 +125,12 @@ function off_membership_form_feature_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'confirmation' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 5,
+      ),
       'default' => array(
         'label' => 'above',
         'module' => 'entityreference',
@@ -148,6 +175,13 @@ function off_membership_form_feature_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'confirmation' => array(
+        'label' => 'above',
+        'module' => 'taxonomy',
+        'settings' => array(),
+        'type' => 'taxonomy_term_reference_link',
+        'weight' => 3,
+      ),
       'default' => array(
         'label' => 'above',
         'module' => 'taxonomy',
@@ -503,9 +537,9 @@ function off_membership_form_feature_field_default_field_instances() {
 
   // Translatables
   // Included for use with string extractors like potx.
-  t('Address');
   t('Amount');
   t('Email');
+  t('Name and Address');
   t('Payment Ref');
   t('Subscription Type');
 

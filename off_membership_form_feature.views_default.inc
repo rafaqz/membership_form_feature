@@ -274,7 +274,7 @@ function off_membership_form_feature_views_default_views() {
   $handler->display->display_options['fields']['delete_entityform']['field'] = 'delete_entityform';
   $handler->display->display_options['fields']['delete_entityform']['label'] = 'Delete';
   $handler->display->display_options['fields']['delete_entityform']['hide_alter_empty'] = FALSE;
-  /* Field: Entityform: Address */
+  /* Field: Entityform: Name and Address */
   $handler->display->display_options['fields']['field_mf_address']['id'] = 'field_mf_address';
   $handler->display->display_options['fields']['field_mf_address']['table'] = 'field_data_field_mf_address';
   $handler->display->display_options['fields']['field_mf_address']['field'] = 'field_mf_address';
@@ -290,7 +290,7 @@ function off_membership_form_feature_views_default_views() {
   $handler->display->display_options['fields']['field_mf_email']['id'] = 'field_mf_email';
   $handler->display->display_options['fields']['field_mf_email']['table'] = 'field_data_field_mf_email';
   $handler->display->display_options['fields']['field_mf_email']['field'] = 'field_mf_email';
-  /* Field: Entityform: Address */
+  /* Field: Entityform: Name and Address */
   $handler->display->display_options['fields']['field_mf_address_1']['id'] = 'field_mf_address_1';
   $handler->display->display_options['fields']['field_mf_address_1']['table'] = 'field_data_field_mf_address';
   $handler->display->display_options['fields']['field_mf_address_1']['field'] = 'field_mf_address';
