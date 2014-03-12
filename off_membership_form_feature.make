@@ -10,7 +10,7 @@ projects[payment][subdir] = "contrib"
 projects[payment][version] = "1.9"
 
 projects[payment_paypal][subdir] = "contrib"
-projects[payment_paypal][version] = "1.0"
+projects[payment_paypal][version] = "1.1"
 
 projects[currency][subdir] = "contrib"
 projects[currency][version] = "2.2"
