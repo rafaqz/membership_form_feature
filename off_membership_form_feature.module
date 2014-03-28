@@ -124,6 +124,9 @@ function off_membership_form_feature_form_alter(&$form, &$form_state, $form_id) 
  */
 function off_membership_form_feature_payment_line_item_info() {
   $vocabulary = taxonomy_vocabulary_machine_name_load('membership_types');
+  if (empty($vocabulary)) {
+    return array();
+  }
   $terms = entity_load('taxonomy_term', FALSE, array('vid' => $vocabulary->vid));
   $info = array();
   foreach($terms as $term) {
