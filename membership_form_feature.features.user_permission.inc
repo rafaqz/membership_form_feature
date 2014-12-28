@@ -1,13 +1,13 @@
 <?php
 /**
  * @file
- * off_membership_form_feature.features.user_permission.inc
+ * membership_form_feature.features.user_permission.inc
  */
 
 /**
  * Implements hook_user_default_permissions().
  */
-function off_membership_form_feature_user_default_permissions() {
+function membership_form_feature_user_default_permissions() {
   $permissions = array();
 
   // Exported permission: 'add terms in membership_type'.

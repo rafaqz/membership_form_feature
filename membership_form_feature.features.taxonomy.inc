@@ -1,13 +1,13 @@
 <?php
 /**
  * @file
- * off_membership_form_feature.features.taxonomy.inc
+ * membership_form_feature.features.taxonomy.inc
  */
 
 /**
  * Implements hook_taxonomy_default_vocabularies().
  */
-function off_membership_form_feature_taxonomy_default_vocabularies() {
+function membership_form_feature_taxonomy_default_vocabularies() {
   return array(
     'membership_type' => array(
       'name' => 'Membership Type',

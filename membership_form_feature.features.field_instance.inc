@@ -1,13 +1,13 @@
 <?php
 /**
  * @file
- * off_membership_form_feature.features.field_instance.inc
+ * membership_form_feature.features.field_instance.inc
  */
 
 /**
  * Implements hook_field_default_field_instances().
  */
-function off_membership_form_feature_field_default_field_instances() {
+function membership_form_feature_field_default_field_instances() {
   $field_instances = array();
 
   // Exported field_instance: 'entityform-membership_form-field_mf_address'

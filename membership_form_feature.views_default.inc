@@ -1,13 +1,13 @@
 <?php
 /**
  * @file
- * off_membership_form_feature.views_default.inc
+ * membership_form_feature.views_default.inc
  */
 
 /**
  * Implements hook_views_default_views().
  */
-function off_membership_form_feature_views_default_views() {
+function membership_form_feature_views_default_views() {
   $export = array();
 
   $view = new view();

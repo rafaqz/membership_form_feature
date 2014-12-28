@@ -4,30 +4,30 @@
  * Code for the OFF Membership Form Feature feature.
  */
 
-include_once 'off_membership_form_feature.features.inc';
+include_once 'membership_form_feature.features.inc';
 
 
 /**
  * Implements hook_menu().
  */
 
-function off_membership_form_feature_menu() {
+function membership_form_feature_menu() {
   $items['membership/pay'] = array(
-    'page callback' => 'off_membership_form_feature_payment_page',
+    'page callback' => 'membership_form_feature_payment_page',
     'access callback' => TRUE,
     //'page arguments' => array(1, 'foo'),
   );
   return $items;
 }
 
-function off_membership_form_feature_entity_insert($entity, $type) {
+function membership_form_feature_entity_insert($entity, $type) {
   // Copy the entityform id to the session variable to be used in the subsequent payment.
   if ($type === 'entityform') {
     $info = entity_get_info($type);
     list($id) = entity_extract_ids($type, $entity);
     $entityform_wrapper = entity_metadata_wrapper('entityform', $entity);
     drupal_session_start();
-    $_SESSION['off_membership_form_feature']['entityform_id'] = $entityform_wrapper->getIdentifier();
+    $_SESSION['membership_form_feature']['entityform_id'] = $entityform_wrapper->getIdentifier();
   }
 }
 
@@ -38,8 +38,8 @@ function off_membership_form_feature_entity_insert($entity, $type) {
  *   A Drupal build array.
  */
 
-function off_membership_form_feature_payment_page() {
-  $entityform_id = $_SESSION['off_membership_form_feature']['entityform_id'];
+function membership_form_feature_payment_page() {
+  $entityform_id = $_SESSION['membership_form_feature']['entityform_id'];
   $entityform = entityform_load($entityform_id);
   // Load the user selected subscription type taxonomy term.
   $term = taxonomy_term_load($entityform->field_mf_subscription_type['und'][0]['tid']);
@@ -52,14 +52,14 @@ function off_membership_form_feature_payment_page() {
     // Use the currency from the user selected subscription type.
     'currency_code' => $term->field_mf_amount['und'][0]['currency'],
     'description' => t('Pay for your membership subscription'),
-    'finish_callback' => 'off_membership_form_feature_process_payment',
+    'finish_callback' => 'membership_form_feature_process_payment',
   ));
   // Create a payment line item object.
   $payment->setLineItem(new PaymentLineItem(array(
     // Use the amount and description from the user selected subscription type.
     'amount' => $term->field_mf_amount['und'][0]['amount'],
     'description' => "Open Food Foundation Membership - $term->name",
-    'name' => strtolower("off_membership_form_feature_{$term->name}_payment"),
+    'name' => strtolower("membership_form_feature_{$term->name}_payment"),
   )));
 
   $entityform_view = entityform_page_view($entityform, $view_mode = 'confirmation');
@@ -78,7 +78,7 @@ function off_membership_form_feature_payment_page() {
  * @param object $element
  */
 
-function off_membership_form_feature_process_payment($element) {
+function membership_form_feature_process_payment($element) {
   $entityform_id = $element->context_data['entityform_id'];
   $entityform = entityform_load($entityform_id);
   $entityform->field_mf_payment_ref['und'][0]['target_id'] = $element->pid;
@@ -89,7 +89,7 @@ function off_membership_form_feature_process_payment($element) {
 /**
  * Implements hook_field_widget_properties_ENTITY_TYPE_alter().
  */
-function off_membership_form_feature_field_widget_form_alter(&$element, &$form_state, $context) {
+function membership_form_feature_field_widget_form_alter(&$element, &$form_state, $context) {
   if (($context['field']['field_name'] == 'field_mf_subscription_type') && 
     ($form_state['build_info']['form_id'] === 'membership_form_entityform_edit_form')) {
     foreach($element['#options'] as $tid => $label) {
@@ -104,7 +104,7 @@ function off_membership_form_feature_field_widget_form_alter(&$element, &$form_s
  * Implements hook_form_alter().
  */
 
-function off_membership_form_feature_form_alter(&$form, &$form_state, $form_id) {
+function membership_form_feature_form_alter(&$form, &$form_state, $form_id) {
   // Cleanup form.
   if ($form_id === 'membership_form_entityform_edit_form') {
     // Remove payment ref. This is populated automatically.
@@ -122,7 +122,7 @@ function off_membership_form_feature_form_alter(&$form, &$form_state, $form_id) 
  * @return array
  *   An array with PaymentLineItemInfo objects.
  */
-function off_membership_form_feature_payment_line_item_info() {
+function membership_form_feature_payment_line_item_info() {
   $vocabulary = taxonomy_vocabulary_machine_name_load('membership_types');
   if (empty($vocabulary)) {
     return array();
@@ -131,7 +131,7 @@ function off_membership_form_feature_payment_line_item_info() {
   $info = array();
   foreach($terms as $term) {
     $info[] = new PaymentLineItemInfo(array(
-      'name' => strtolower("off_membership_form_feature_{$term->name}_payment"),
+      'name' => strtolower("membership_form_feature_{$term->name}_payment"),
       'title' => "Open Food Foundation Membership - $term->name",
     ));
   }

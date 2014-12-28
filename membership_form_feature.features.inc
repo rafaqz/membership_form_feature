@@ -1,20 +1,20 @@
 <?php
 /**
  * @file
- * off_membership_form_feature.features.inc
+ * membership_form_feature.features.inc
  */
 
 /**
  * Implements hook_views_api().
  */
-function off_membership_form_feature_views_api($module = NULL, $api = NULL) {
+function membership_form_feature_views_api($module = NULL, $api = NULL) {
   return array("api" => "3.0");
 }
 
 /**
  * Implements hook_default_entityform_type().
  */
-function off_membership_form_feature_default_entityform_type() {
+function membership_form_feature_default_entityform_type() {
   $items = array();
   $items['membership_form'] = entity_import('entityform_type', '{
     "type" : "membership_form",

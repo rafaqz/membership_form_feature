@@ -1,13 +1,13 @@
 <?php
 /**
  * @file
- * off_membership_form_feature.features.field_base.inc
+ * membership_form_feature.features.field_base.inc
  */
 
 /**
  * Implements hook_field_default_field_bases().
  */
-function off_membership_form_feature_field_default_field_bases() {
+function membership_form_feature_field_default_field_bases() {
   $field_bases = array();
 
   // Exported field_base: 'field_mf_address'

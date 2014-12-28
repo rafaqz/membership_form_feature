@@ -1,13 +1,13 @@
 <?php
 /**
  * @file
- * off_membership_form_feature.features.menu_links.inc
+ * membership_form_feature.features.menu_links.inc
  */
 
 /**
  * Implements hook_menu_default_menu_links().
  */
-function off_membership_form_feature_menu_default_menu_links() {
+function membership_form_feature_menu_default_menu_links() {
   $menu_links = array();
 
   // Exported menu link: main-menu_membership:eform/submit/membership-form
