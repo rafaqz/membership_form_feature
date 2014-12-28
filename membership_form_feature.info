@@ -1,6 +1,6 @@
-name = OFF Membership Form Feature
+name = Membership Form Feature
 core = 7.x
-package = Collabco
+package = Features
 dependencies[] = addressfield
 dependencies[] = better_formats
 dependencies[] = ctools
